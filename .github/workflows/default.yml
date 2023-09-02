@@ -3,7 +3,9 @@ name: default
 on:
   push:
     branches: [ "master" ]
-
+  pull_request:
+    branches: [ "master" ]
+  
 jobs:
   default:
     runs-on: self-hosted
@@ -20,8 +22,7 @@ jobs:
         run: python -c "import datetime; print(datetime.datetime.now().isoformat())"
 
       - name: Clean up old containers
-        run: docker compose -f docker-compose.yml down
+        run: docker compose -f docker-compose.yml down --rmi all
 
       - name: Run docker compose
         run: docker compose -f docker-compose.yml up -d
-        if: contains(github.event.head_commit.message, 'command:deploy')
