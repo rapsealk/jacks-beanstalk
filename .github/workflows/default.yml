@@ -22,11 +22,7 @@ jobs:
         run: python -c "import datetime; print(datetime.datetime.now().isoformat())"
 
       - name: Clean up old containers
-        run: docker compose -f docker-compose.yml down
-
-      - name: Log GitHub event
-        run: echo ${{ toJson(github.event) }}
+        run: docker compose -f docker-compose.yml down --rmi all
 
       - name: Run docker compose
         run: docker compose -f docker-compose.yml up -d
-        if: contains(github.event.commits[0].message, 'command:deploy')
