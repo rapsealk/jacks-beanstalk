@@ -3,4 +3,6 @@ version: "3.4"
 services:
   python:
     image: python:3.11.5-alpine3.18
-    command: python -c "import time; print('docker-compose'); time.sleep(3); print(time.time())"
+    ports:
+      - 8080:8080
+    command: python -m http.server 8080
