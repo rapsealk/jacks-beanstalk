@@ -20,7 +20,7 @@ jobs:
         run: python -c "import datetime; print(datetime.datetime.now().isoformat())"
 
       - name: Run docker compose
-        run: docker-compose -f docker-compose.yml up
+        run: docker compose -f docker-compose.yml up
 
       - name: Tear down docker containers
-        run: docker-compose -f docker-compose.yml down
+        run: docker compose -f docker-compose.yml down
