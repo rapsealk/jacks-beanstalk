@@ -24,9 +24,9 @@ jobs:
       - name: Clean up old containers
         run: docker compose -f docker-compose.yml down
 
-      - name: Echo commit message
-        run: echo ${{ github.event.head_commit.message }}
+      - name: Log GitHub event
+        run: echo ${{ toJson(github.event) }}
 
       - name: Run docker compose
         run: docker compose -f docker-compose.yml up -d
-        if: contains(github.event.head_commit.message, 'command:deploy')
+        if: contains(github.event.commits[0].message, 'command:deploy')
