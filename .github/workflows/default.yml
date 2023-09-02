@@ -3,7 +3,9 @@ name: default
 on:
   push:
     branches: [ "master" ]
-
+  pull_request:
+    branches: [ "master" ]
+  
 jobs:
   default:
     runs-on: self-hosted
