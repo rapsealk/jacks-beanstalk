@@ -19,8 +19,8 @@ jobs:
       - name: Run python
         run: python -c "import datetime; print(datetime.datetime.now().isoformat())"
 
+      - name: Clean up old containers
+        run: docker compose -f docker-compose.yml down
+
       - name: Run docker compose
         run: docker compose -f docker-compose.yml up
-
-      - name: Tear down docker containers
-        run: docker compose -f docker-compose.yml down
